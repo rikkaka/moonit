@@ -4,37 +4,26 @@ on:
   push:
     branches:
       - master
-  pull_request:  # 在 PR 时触发
+  pull_request: 
 
 jobs:
   build:
-    runs-on: windows-latest  # 在 Windows 平台上运行
+    runs-on: windows-latest 
 
     steps:
-      # 第一步：拉取代码
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      # 第二步：安装 xmake
-      - name: Install xmake
-        run: |
-          # 1. 允许执行脚本
-          Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
-          # 2. 下载并安装 Scoop
-          irm get.scoop.sh | iex
-          # 3. 在 Scoop 中安装 xmake
-          scoop install xmake
-
-
-      # 第三步：配置和编译
       - name: Build with xmake
         run: |
-          xmake f -m release  # 配置平台为 Windows，模式为 Release
-          xmake                          # 编译
+          Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+          irm get.scoop.sh | iex
+          scoop install xmake
+          xmake f -m release
+          xmake  
 
-      # 可选步骤：保存生成的二进制文件
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: windows-binary
-          path: build/                   # 替换为你的实际输出路径
+          path: build/release/windows/x64/moonit.exe
