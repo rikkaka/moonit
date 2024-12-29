@@ -26,4 +26,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: windows-binary
-          path: build/release/windows/x64/moonit.exe
+          path: build/release/
