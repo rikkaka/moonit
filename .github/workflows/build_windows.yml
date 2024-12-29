@@ -19,7 +19,7 @@ jobs:
           Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
           irm get.scoop.sh | iex
           scoop install xmake
-          xmake f -m release
+          xmake f -m release -y
           xmake  
 
       - name: Upload Artifact
