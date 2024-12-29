@@ -6,6 +6,8 @@ target("./moonit")
     set_kind("binary")
     add_files("src/*.cpp")
     set_languages("c++20")
+    add_defines("_UTF8")
+    add_cxxflags("-finput-charset=UTF-8", "-fexec-charset=UTF-8")
     add_packages("opencv")
 
 --
