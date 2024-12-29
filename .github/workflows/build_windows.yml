@@ -1,0 +1,34 @@
+name: Build Windows with xmake
+
+on:
+  push:
+    branches:
+      - main  # 在推送到 main 分支时触发
+  pull_request:  # 在 PR 时触发
+
+jobs:
+  build:
+    runs-on: windows-latest  # 在 Windows 平台上运行
+
+    steps:
+      # 第一步：拉取代码
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # 第二步：安装 xmake
+      - name: Install xmake
+        run: |
+          choco install xmake -y  # 使用 Chocolatey 安装 xmake
+
+      # 第三步：配置和编译
+      - name: Build with xmake
+        run: |
+          xmake f -m release  # 配置平台为 Windows，模式为 Release
+          xmake                          # 编译
+
+      # 可选步骤：保存生成的二进制文件
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: windows-binary
+          path: build/                   # 替换为你的实际输出路径
