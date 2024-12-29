@@ -18,7 +18,13 @@ jobs:
       # 第二步：安装 xmake
       - name: Install xmake
         run: |
-          winget install xmake
+          # 1. 允许执行脚本
+          Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+          # 2. 下载并安装 Scoop
+          irm get.scoop.sh | iex
+          # 3. 在 Scoop 中安装 xmake
+          scoop install xmake
+
 
       # 第三步：配置和编译
       - name: Build with xmake
