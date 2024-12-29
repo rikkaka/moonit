@@ -190,6 +190,7 @@ std::string perform_conversion(const cv::Mat &img, int rows, int cols)
 
 int main(int argc, char **argv)
 {
+    std::system("chcp 65001");
     std::locale::global(std::locale("en_US.UTF-8"));
     std::cout.imbue(std::locale("en_US.UTF-8"));
     
