@@ -190,6 +190,9 @@ std::string perform_conversion(const cv::Mat &img, int rows, int cols)
 
 int main(int argc, char **argv)
 {
+    std::locale::global(std::locale("en_US.UTF-8"));
+    std::cout.imbue(std::locale("en_US.UTF-8"));
+    
     if (argc != 4)
     {
         std::cout << "Usage: " << argv[0] << " <image> <rows> <columns>\n";
