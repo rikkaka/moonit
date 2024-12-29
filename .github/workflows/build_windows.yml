@@ -21,7 +21,7 @@ jobs:
           scoop install xmake
           xmake f -m release -y
           xmake  
-          xmake run -d .\moonit .\src\asset\moon0.png 10 10 > a.txt
+          .\build\windows\x64\moonit.exe .\src\asset\moon0.png 10 10 > a.txt
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
