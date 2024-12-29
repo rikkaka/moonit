@@ -21,9 +21,6 @@ jobs:
           scoop install xmake
           xmake f -m release -y
           xmake  
-
-      - name: Test
-        run: |
           xmake run -d .\moonit .\src\asset\moon0.png 10 10 > a.txt
 
       - name: Upload Artifact
