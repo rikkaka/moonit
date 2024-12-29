@@ -18,7 +18,7 @@ jobs:
       # 第二步：安装 xmake
       - name: Install xmake
         run: |
-          choco install xmake -y  # 使用 Chocolatey 安装 xmake
+          winget install xmake
 
       # 第三步：配置和编译
       - name: Build with xmake
