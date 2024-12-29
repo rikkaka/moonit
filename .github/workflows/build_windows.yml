@@ -3,7 +3,7 @@ name: Build Windows with xmake
 on:
   push:
     branches:
-      - main  # 在推送到 main 分支时触发
+      - master
   pull_request:  # 在 PR 时触发
 
 jobs:
