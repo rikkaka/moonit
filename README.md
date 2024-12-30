@@ -1,7 +1,7 @@
 # Moonit
 Convert any image into moon emoji art. 🌑 🌘 🌗 🌖 🌕 🌔 🌓 🌒
 
-![](asset/momo_res.png)
+<img src="asset/momo_res.png" width=300px>
 
 ## Usage
 Requirement: [xmake](https://xmake.io/#/).
