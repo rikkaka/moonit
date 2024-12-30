@@ -31,9 +31,6 @@ void transparent_to_black(cv::Mat &img)
     cv::cvtColor(img, img, cv::COLOR_BGRA2BGR);
 }
 
-/**
- * @brief SSIM 计算函数：假设传入的 I1, I2 都是同样大小的 CV_32F 矩阵（可多通道）。
- */
 float compute_SSIMMap(const cv::Mat &I1, const cv::Mat &I2)
 {
 
@@ -84,10 +81,6 @@ float compute_SSIMMap(const cv::Mat &I1, const cv::Mat &I2)
     return ssim_channels[0] * 0.8f + ssim_channels[1] * 0.1f + ssim_channels[2] * 0.1f;
 }
 
-/**
- * @brief 从 "moon.h" 中加载 8 张月相图。
- * @return 返回一个数组指针，每个元素是一张 OpenCV Mat。
- */
 cv::Mat *load_moons()
 {
     cv::Mat *moons = new cv::Mat[8];
