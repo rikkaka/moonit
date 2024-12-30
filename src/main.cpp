@@ -10,7 +10,6 @@ std::string moons_txt[] = {"🌑", "🌒", "🌓", "🌔", "🌕", "🌖", "🌗
 
 void transparent_to_black(cv::Mat &img)
 {
-
     if (img.channels() != 4)
     {
         return;
@@ -119,7 +118,7 @@ void preprocess_moons(cv::Mat *moons, int cell_width, int cell_height)
     }
 }
 
-std::string get_most_similar_moon(cv::Mat *moons, const cv::Mat &cell)
+std::string get_most_similar_moon(const cv::Mat *moons, const cv::Mat &cell)
 {
     double max_ssim = -1.0;
     int max_index = 0;
@@ -144,7 +143,7 @@ void enhance_ychannel(cv::Mat &img)
     ch[0].convertTo(ch[0], CV_8U);
 
     cv::Ptr<cv::CLAHE> clahe = cv::createCLAHE();
-    clahe->setClipLimit(2);
+    clahe->setClipLimit(3);
     clahe->setTilesGridSize(cv::Size(16, 16));
     clahe->apply(ch[0], ch[0]);
 
@@ -183,15 +182,19 @@ std::string perform_conversion(const cv::Mat &img, int rows, int cols)
 
 int main(int argc, char **argv)
 {
-    std::system("chcp 65001");
-    std::locale::global(std::locale("en_US.UTF-8"));
-    std::cout.imbue(std::locale("en_US.UTF-8"));
-    
     if (argc != 4)
     {
         std::cout << "Usage: " << argv[0] << " <image> <rows> <columns>\n";
         return -1;
     }
+
+    #if defined(_WIN32) || defined(_WIN64)
+        std::system("chcp 65001");
+        std::locale::global(std::locale("en_US.UTF-8"));
+        std::cout.imbue(std::locale("en_US.UTF-8"));
+    #endif
+
+    cv::utils::logging::setLogLevel(cv::utils::logging::LOG_LEVEL_SILENT);
 
     cv::Mat input_img = cv::imread(argv[1], cv::IMREAD_UNCHANGED);
     if (input_img.empty())
