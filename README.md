@@ -10,7 +10,7 @@ Compilation:
 ```
 git clone https://github.com/rikkaka/moonit
 cd moonit
-xmake -f m release
+xmake f -m release
 xmake
 ```
 The executable file will be compiled under `./build/`.
